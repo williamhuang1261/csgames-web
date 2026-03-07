@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 
 function App() {
     const [x, setX] = useState(150);
+    let lastX = x;
 
     useEffect(() => {
         const dragEnter = (e: DragEvent) => {
@@ -18,6 +19,7 @@ function App() {
     useEffect(() => {
         const dragFn = (e: DragEvent) => {
             setX(e.x - 32)
+            lastX = x;
         }
 
         document.addEventListener('drag', dragFn)
@@ -38,15 +40,13 @@ function App() {
     }, []);
 
 
-
-
     return (
         <div className={"app-layout"}>
             <ul className={"text-buttons"} style={{
                 width: x,
             }}>
-                <li className={""}>🌟 Game page</li>
-                {x <= 100 && (<li className={""}>🐣 Easter egg</li>)}
+                <li className={""}>{`🌟${lastX >= 100 ? "Game page" : ""}`}</li>
+                <li className={""}>{`🐣${lastX >= 100 ? "Easter egg" : ""}`}</li>
             </ul>
             <div className={"game-layout"}>
                 <div className={"drag-bar"} draggable={true}></div>
