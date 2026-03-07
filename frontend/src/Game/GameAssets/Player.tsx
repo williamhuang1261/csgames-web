@@ -1,7 +1,7 @@
-import { Camera } from './Camera';
-import mainCharacterImg from '../assets/characters/main-character.png';
-import { GROUND_Y } from './Constants';
-import type { Coordinates, GameAsset } from './GameAsset';
+import { Camera } from '../Camera.tsx';
+import mainCharacterImg from '../../assets/characters/main-character.png';
+import { GROUND_Y } from '../Constants.tsx';
+import type { Coordinates, GameAsset } from './GameAsset.tsx';
 
 export class Player implements GameAsset {
   private static instance: Player | null = null;

@@ -1,14 +1,12 @@
-import { Camera } from './Camera';
-import lightSkyAsset from '../assets/background/light_sky.png';
-import type { Coordinates, GameAsset } from './GameAsset';
+import { Camera } from '../Camera.tsx';
+import groundAsset from '../../assets/background/ground.png';
+import type { Coordinates, GameAsset } from './GameAsset.tsx';
 
-export class LightSky implements GameAsset {
+export class Ground implements GameAsset {
   sprite: HTMLImageElement;
-
+  pos: Coordinates;
   width: number;
   height: number;
-
-  pos: Coordinates;
 
   useCamera: boolean = true;
 
@@ -21,7 +19,7 @@ export class LightSky implements GameAsset {
     this.pos = { x: 0, y: 0 };
 
     this.sprite = new Image();
-    this.sprite.src = lightSkyAsset;
+    this.sprite.src = groundAsset;
 
     this.sprite.onload = () => {
       this.width = this.sprite!.naturalWidth;
@@ -39,7 +37,7 @@ export class LightSky implements GameAsset {
 
     ctx.drawImage(
       this.sprite,
-      this.useCamera ? -camera.x * 0.2 : this.pos.x,
+      this.useCamera ? camera.worldToScreenX(this.pos.x) : this.pos.x,
       this.pos.y,
       this.width,
       this.height,

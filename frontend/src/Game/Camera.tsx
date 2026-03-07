@@ -1,5 +1,5 @@
 import { CANVAS_WIDTH, MAP_WIDTH } from './Constants';
-import { Player } from './Player';
+import { Player } from './GameAssets/Player.tsx';
 
 export class Camera {
   private static instance: Camera;

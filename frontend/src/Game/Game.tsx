@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { CANVAS_HEIGHT, CANVAS_WIDTH, GRAVITY } from './Constants';
-import { Player } from './Player';
-import { Ground } from './Ground';
+import { Player } from './GameAssets/Player.tsx';
+import { Ground } from './GameAssets/Ground.tsx';
 import { Camera } from './Camera';
-import { DarkSky } from './DarkSky';
-import { LightSky } from './LightSky';
-import { CloudySky } from './CloudySky';
+import { DarkSky } from './GameAssets/DarkSky.tsx';
+import { LightSky } from './GameAssets/LightSky.tsx';
+import { CloudySky } from './GameAssets/CloudySky.tsx';
 
 const Game: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -21,6 +21,8 @@ const Game: React.FC = () => {
   const darkSky = useRef(new DarkSky(CANVAS_WIDTH, CANVAS_HEIGHT));
   const lightSky = useRef(new LightSky(CANVAS_WIDTH, CANVAS_HEIGHT));
   const cloudySky = useRef(new CloudySky(CANVAS_WIDTH, CANVAS_HEIGHT));
+
+  // const tree1 = useRef(nTree)
 
   const ground = useRef(new Ground(CANVAS_WIDTH, CANVAS_HEIGHT));
 

@@ -1,7 +1,7 @@
-import { Camera } from './Camera';
-import darkSkyAsset from '../assets/background/dark_sky.png';
+import { Camera } from '../Camera.tsx';
+import darkSkyAsset from '../../assets/background/dark_sky.png';
 
-import type { Coordinates, GameAsset } from './GameAsset';
+import type { Coordinates, GameAsset } from './GameAsset.tsx';
 
 export class DarkSky implements GameAsset {
   sprite: HTMLImageElement;
@@ -31,6 +31,7 @@ export class DarkSky implements GameAsset {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // TODO: TBD
   handleUserInput(keys: React.RefObject<Record<string, boolean>>): void {
     return;
   }

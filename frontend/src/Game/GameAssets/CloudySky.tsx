@@ -1,6 +1,6 @@
-import { Camera } from './Camera';
-import cloudySkyAsset from '../assets/background/cloudy_sky.png';
-import type { Coordinates, GameAsset } from './GameAsset';
+import { Camera } from '../Camera.tsx';
+import cloudySkyAsset from '../../assets/background/cloudy_sky.png';
+import type { Coordinates, GameAsset } from './GameAsset.tsx';
 
 export class CloudySky implements GameAsset {
   sprite: HTMLImageElement;
@@ -30,6 +30,7 @@ export class CloudySky implements GameAsset {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // TODO: Clicks
   handleUserInput(keys: React.RefObject<Record<string, boolean>>): void {
     return;
   }
