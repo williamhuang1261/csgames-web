@@ -6,6 +6,7 @@ import { Camera } from './Camera';
 import { DarkSky } from './GameAssets/DarkSky.tsx';
 import { LightSky } from './GameAssets/LightSky.tsx';
 import { CloudySky } from './GameAssets/CloudySky.tsx';
+import { MysteryBlock } from './GameAssets/MysteryBlock';
 
 const Game: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -22,7 +23,7 @@ const Game: React.FC = () => {
   const lightSky = useRef(new LightSky(CANVAS_WIDTH, CANVAS_HEIGHT));
   const cloudySky = useRef(new CloudySky(CANVAS_WIDTH, CANVAS_HEIGHT));
 
-  // const tree1 = useRef(nTree)
+  const mysteryBlock = useRef(new MysteryBlock(10, 10));
 
   const ground = useRef(new Ground(CANVAS_WIDTH, CANVAS_HEIGHT));
 
@@ -55,6 +56,7 @@ const Game: React.FC = () => {
       ground.current.render(ctx);
       cloudySky.current.render(ctx);
       player.current.render(ctx);
+      mysteryBlock.current.render(ctx);
 
       requestAnimationFrame(gameLoop);
     };
