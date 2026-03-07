@@ -1,24 +1,43 @@
 import './App.css';
 import Game from './Game/Game';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function App() {
     const [x, setX] = useState(150);
 
+    useEffect(() => {
+        const dragEnter = (e: DragEvent) => {
+            setX(e.x - 32)
+        }
 
-    document.addEventListener('dragenter', (ev: DragEvent) => {
-        setX(ev.x - 32)
-    })
+        document.addEventListener('dragenter', dragEnter)
 
-    document.addEventListener('drag', (ev: DragEvent) => {
-        setX(ev.x - 32)
-    })
+        // return document.removeEventListener('dragenter', dragEnter)
+    }, [])
 
-    document.addEventListener('dragleave', (ev: DragEvent) => {
-        ev.preventDefault()
-        ev.stopPropagation()
-        setX(ev.x - 32)
-    })
+    useEffect(() => {
+        const dragFn = (e: DragEvent) => {
+            setX(e.x - 32)
+        }
+
+        document.addEventListener('drag', dragFn)
+
+        // return document.removeEventListener('drag', dragFn)
+    }, []);
+
+
+    useEffect(() => {
+        const dragLeave = (e: DragEvent) => {
+            e.preventDefault()
+            e.stopPropagation()
+        }
+
+        document.addEventListener('dragend', dragLeave)
+
+        // return document.removeEventListener('dragend', dragLeave)
+    }, []);
+
+
 
 
     return (
@@ -27,11 +46,7 @@ function App() {
                 width: x,
             }}>
                 <li className={""}>🌟 Game page</li>
-                {
-                    x <= 100 && (
-                        <li className={""}>🐣 Easter egg</li>
-                    )
-                }
+                {x <= 100 && (<li className={""}>🐣 Easter egg</li>)}
             </ul>
             <div className={"game-layout"}>
                 <div className={"drag-bar"} draggable={true}></div>
