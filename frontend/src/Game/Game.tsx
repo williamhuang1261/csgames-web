@@ -8,6 +8,9 @@ import { LightSky } from './GameAssets/LightSky.tsx';
 import { CloudySky } from './GameAssets/CloudySky.tsx';
 import { MysteryBlock } from './GameAssets/MysteryBlock';
 import { Shrooms } from './GameAssets/Shrooms.tsx';
+import { Tree1 } from './GameAssets/Tree1.tsx';
+import { Tree2 } from './GameAssets/Tree2.tsx';
+import { Tree3 } from './GameAssets/Tree3.tsx';
 
 const Game: React.FC = () => {
 
@@ -27,6 +30,9 @@ const Game: React.FC = () => {
 
   const mysteryBlock = useRef(new MysteryBlock(40, 40));
   const shrooms = useRef(new Shrooms(40, 40));
+  const tree1 = useRef(new Tree1(50, 180));
+  const tree2 = useRef(new Tree2(50, 180));
+  const tree3 = useRef(new Tree3(50, 180));
 
   const ground = useRef(new Ground(CANVAS_WIDTH, CANVAS_HEIGHT));
 
@@ -58,6 +64,9 @@ const Game: React.FC = () => {
       lightSky.current.render(ctx);
       cloudySky.current.render(ctx);
       ground.current.render(ctx);
+      tree1.current.render(ctx);
+      tree2.current.render(ctx);
+      tree3.current.render(ctx);
       cloudySky.current.render(ctx);
       player.current.render(ctx, () => {showMushroom = true});
       mysteryBlock.current.render(ctx);
