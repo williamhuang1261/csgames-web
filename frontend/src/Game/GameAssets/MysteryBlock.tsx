@@ -45,8 +45,9 @@ export class MysteryBlock implements GameAsset {
         const image: HTMLImageElement["src"] =  this.images[this.counter]
 
         this.slower++
-        if (this.slower > 400) {
+        if (this.slower > 100) {
             this.counter = (this.counter + 1) % 4
+            this.slower = 0
         }
         this.sprite = new Image()
         this.sprite.src = image
