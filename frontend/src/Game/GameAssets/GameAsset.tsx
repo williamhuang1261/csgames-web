@@ -10,5 +10,5 @@ export interface GameAsset {
   height: number;
 
   handleUserInput(keys: React.RefObject<Record<string, boolean>>): void;
-  render(ctx: CanvasRenderingContext2D): void;
+  render(ctx: CanvasRenderingContext2D, fn?: () => void ): void;
 }

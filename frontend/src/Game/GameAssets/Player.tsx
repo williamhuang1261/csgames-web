@@ -5,6 +5,7 @@ import type {Coordinates, GameAsset} from './GameAsset.tsx';
 
 export class Player implements GameAsset {
   private static instance: Player | null = null;
+  private canShowMushroom = false
 
   sprite: HTMLImageElement;
   pos: Coordinates;
@@ -61,6 +62,7 @@ export class Player implements GameAsset {
     if (keys.current?.['ArrowUp'] && this.onGround) {
       if (this.pos.x > 150 && this.pos.x < 240) {
         this.vy = -8
+        this.canShowMushroom = true
       } else {
         this.vy = -12;
       }
@@ -83,9 +85,13 @@ export class Player implements GameAsset {
 
   }
 
-  render(ctx: CanvasRenderingContext2D): void {
+  render(ctx: CanvasRenderingContext2D, fn: () => void): void {
     const camera = Camera.getInstance();
     const screenX = camera.worldToScreenX(this.pos.x);
+
+    if (this.canShowMushroom) {
+      fn()
+    }
 
     ctx.save();
 

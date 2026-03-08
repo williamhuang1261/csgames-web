@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { CANVAS_HEIGHT, CANVAS_WIDTH, GRAVITY } from './Constants';
 import { Player } from './GameAssets/Player.tsx';
 import { Ground } from './GameAssets/Ground.tsx';
@@ -10,6 +10,7 @@ import { MysteryBlock } from './GameAssets/MysteryBlock';
 import { Shrooms } from './GameAssets/Shrooms.tsx';
 
 const Game: React.FC = () => {
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const keys: React.RefObject<Record<string, boolean>> = useRef<Record<string, boolean>>({});
 
@@ -30,6 +31,7 @@ const Game: React.FC = () => {
   const ground = useRef(new Ground(CANVAS_WIDTH, CANVAS_HEIGHT));
 
   useEffect(() => {
+    let showMushroom = false;
     const canvas = canvasRef.current!;
     const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!;
     ctx.imageSmoothingEnabled = false;
@@ -57,9 +59,11 @@ const Game: React.FC = () => {
       cloudySky.current.render(ctx);
       ground.current.render(ctx);
       cloudySky.current.render(ctx);
-      player.current.render(ctx);
+      player.current.render(ctx, () => {showMushroom = true});
       mysteryBlock.current.render(ctx);
-      shrooms.current.render(ctx);
+      if (showMushroom) {
+        shrooms.current.render(ctx);
+      }
 
       requestAnimationFrame(gameLoop);
     };
