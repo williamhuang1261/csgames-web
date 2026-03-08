@@ -4,22 +4,31 @@ import {useEffect, useState} from "react";
 
 function App() {
     const [x, setX] = useState(150);
-    let lastX = x;
 
     useEffect(() => {
         const dragEnter = (e: DragEvent) => {
-            setX(e.x - 32)
+            if (e.x != 0) {
+                setX(e.x - 32)
+            }
         }
 
         document.addEventListener('dragenter', dragEnter)
 
+
+        document.addEventListener("dragstart", function( event ) {
+            const img = new Image();
+            img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
+            // @ts-expect-error jasfkl;ajsdf
+            event.dataTransfer.setDragImage(img, 0, 0);
+        }, false);
         // return document.removeEventListener('dragenter', dragEnter)
     }, [])
 
     useEffect(() => {
         const dragFn = (e: DragEvent) => {
-            setX(e.x - 32)
-            lastX = x;
+            if (e.x != 0 ) {
+                setX(e.x - 32)
+            }
         }
 
         document.addEventListener('drag', dragFn)
@@ -45,8 +54,8 @@ function App() {
             <ul className={"text-buttons"} style={{
                 width: x,
             }}>
-                <li className={""}>{`🌟${lastX >= 100 ? "Game page" : ""}`}</li>
-                <li className={""}>{`🐣${lastX >= 100 ? "Easter egg" : ""}`}</li>
+                <li>🌟{x >= 100 && <span>Game Page</span>}</li>
+                <li>🐣{x >= 100 && <span>Easter egg</span>}</li>
             </ul>
             <div className={"game-layout"}>
                 <div className={"drag-bar"} draggable={true}></div>
