@@ -1,5 +1,5 @@
 import { Camera } from '../Camera.tsx';
-import mysteryBlock from '../../assets/scenery/special/mystery-block.png';
+import mysteryBlock from '../../assets/scenery/special/myster-box-animated.gif';
 import type { Coordinates, GameAsset } from './GameAsset.tsx';
 
 export class MysteryBlock implements GameAsset {
