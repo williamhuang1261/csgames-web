@@ -7,6 +7,7 @@ import { DarkSky } from './GameAssets/DarkSky.tsx';
 import { LightSky } from './GameAssets/LightSky.tsx';
 import { CloudySky } from './GameAssets/CloudySky.tsx';
 import { MysteryBlock } from './GameAssets/MysteryBlock';
+import { Shrooms } from './GameAssets/Shrooms.tsx';
 
 const Game: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -24,6 +25,7 @@ const Game: React.FC = () => {
   const cloudySky = useRef(new CloudySky(CANVAS_WIDTH, CANVAS_HEIGHT));
 
   const mysteryBlock = useRef(new MysteryBlock(40, 40));
+  const shrooms = useRef(new Shrooms(40, 40));
 
   const ground = useRef(new Ground(CANVAS_WIDTH, CANVAS_HEIGHT));
 
@@ -57,6 +59,7 @@ const Game: React.FC = () => {
       cloudySky.current.render(ctx);
       player.current.render(ctx);
       mysteryBlock.current.render(ctx);
+      shrooms.current.render(ctx);
 
       requestAnimationFrame(gameLoop);
     };
