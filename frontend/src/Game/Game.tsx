@@ -23,7 +23,7 @@ const Game: React.FC = () => {
   const lightSky = useRef(new LightSky(CANVAS_WIDTH, CANVAS_HEIGHT));
   const cloudySky = useRef(new CloudySky(CANVAS_WIDTH, CANVAS_HEIGHT));
 
-  const mysteryBlock = useRef(new MysteryBlock(10, 10));
+  const mysteryBlock = useRef(new MysteryBlock(40, 40));
 
   const ground = useRef(new Ground(CANVAS_WIDTH, CANVAS_HEIGHT));
 

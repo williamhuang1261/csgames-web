@@ -1,7 +1,7 @@
-import { Camera } from '../Camera.tsx';
+import {Camera} from '../Camera.tsx';
 import mainCharacterImg from '../../assets/characters/main-character.png';
-import { GROUND_Y } from '../Constants.tsx';
-import type { Coordinates, GameAsset } from './GameAsset.tsx';
+import {GROUND_Y} from '../Constants.tsx';
+import type {Coordinates, GameAsset} from './GameAsset.tsx';
 
 export class Player implements GameAsset {
   private static instance: Player | null = null;
@@ -38,20 +38,36 @@ export class Player implements GameAsset {
   handleUserInput(keys: React.RefObject<Record<string, boolean>>): void {
     // Horizontal movement + direction
     if (keys.current?.['ArrowLeft']) {
-      this.pos.x -= 3;
-      this.direction = 'left';
+      if (this.pos.x > 150 && this.pos.x < 240 && this.pos.y < 200) {
+        const currPos = this.pos.x
+        this.pos.x = Math.abs(currPos - 150) <= Math.abs(currPos - 240) ? 150 : 240
+      } else {
+        this.pos.x -= 3;
+        this.direction = 'left';
+      }
     }
 
     if (keys.current?.['ArrowRight']) {
-      this.pos.x += 3;
-      this.direction = 'right';
+      if (this.pos.x > 150 && this.pos.x < 240 && this.pos.y < 200) {
+        const currPos = this.pos.x
+        this.pos.x = Math.abs(currPos - 150) <= Math.abs(currPos - 240) ? 150 : 240
+      } else {
+        this.pos.x += 3;
+        this.direction = 'right';
+      }
     }
 
     // Jump
     if (keys.current?.['ArrowUp'] && this.onGround) {
-      this.vy = -12;
+      if (this.pos.x > 150 && this.pos.x < 240) {
+        this.vy = -8
+      } else {
+        this.vy = -12;
+      }
       this.onGround = false;
     }
+
+
 
     // Gravity
     this.vy += this.gravity;
@@ -63,6 +79,8 @@ export class Player implements GameAsset {
       this.vy = 0;
       this.onGround = true;
     }
+
+
   }
 
   render(ctx: CanvasRenderingContext2D): void {
